@@ -1,0 +1,63 @@
+package skynet;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class adminLogin {
+
+	public static void main(String[] args) {
+		//declaration
+		System.setProperty("webdriver.chrome.driver", "D:\\Chrome driver\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		
+		driver.navigate().to("https://dev-skynet.resolutiondigital.com.au");
+		
+		//maximize window
+		driver.manage().window().maximize();  
+		
+		//click on loginwith email
+		driver.findElement(By.id("toggle-login-form")).click();
+		
+		//enter email
+		driver.findElement(By.id("Username")).sendKeys("skynet-admin-au@yopmail.com");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		//enter password
+		driver.findElement(By.id("Password")).sendKeys("-M3A8V=");
+		
+		//click loginbutton
+		driver.findElement(By.tagName("button")).click();
+		
+		 //Instantiate Action Class        
+        Actions actions = new Actions(driver);
+        //Retrieve WebElement 'Music' to perform mouse hover 
+    	WebElement menuOption = driver.findElement(By.xpath("./html/body/div[3]/div[2]/div/div/div[1]/nav/div/div[1][contains(text(),'MBA Tool')]"));
+    	//Mouse hover menuOption 'Music'
+    	actions.moveToElement(menuOption).perform();
+    	System.out.println("Done Mouse hover on 'Music' from Menu");
+    	
+    	//Now Select 'Rock' from sub menu which has got displayed on mouse hover of 'Music'
+    	WebElement subMenuOption = driver.findElement(By.xpath(".//div[contains(text(),'Existing MBA's')]")); 
+    	//Mouse hover menuOption 'Rock'
+    	actions.moveToElement(subMenuOption).click();
+    	System.out.println("Done Mouse hover on 'Rock' from Menu");
+		
+		
+		
+
+	}
+
+	
+
+}
